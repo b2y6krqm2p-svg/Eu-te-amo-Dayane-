@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dayane ❤️</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:black;
+    color:white;
+    overflow:hidden;
+}
+
+.capa, .historia {
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+}
+
+.nome {
+    font-size:70px;
+    color:red;
+    font-weight:bold;
+}
+
+.botao {
+    margin-top:30px;
+    padding:15px 30px;
+    border:none;
+    border-radius:5px;
+    background:red;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.historia {
+    display:none;
+}
+
+.texto {
+    font-size:26px;
+    max-width:750px;
+    line-height:1.6;
+}
+
+.coracao {
+    position:absolute;
+    color:#ff4d6d;
+    font-size:20px;
+    animation: piscar 1.5s infinite;
+}
+
+@keyframes piscar {
+    0% {opacity:0.2; transform:scale(0.8);}
+    50% {opacity:1; transform:scale(1.2);}
+    100% {opacity:0.2; transform:scale(0.8);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="musica" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b4b47.mp3" type="audio/mpeg">
+</audio>
+
+<div class="capa" id="capa">
+    <div class="nome">DAYANE</div>
+    <button class="botao" onclick="iniciar()">▶ Assistir</button>
+</div>
+
+<div class="historia" id="historia">
+    <div>
+        <p id="texto" class="texto">Nossa história vai começar...</p>
+        <button class="botao" id="btn" onclick="proximo()">Continuar</button>
+    </div>
+</div>
+
+<script>
+let cenas = [
+"Capítulo 1: O começo...\n\nDesde o momento em que você entrou na minha vida, tudo começou a fazer mais sentido. Não foi algo planejado, não foi algo esperado… simplesmente aconteceu. E quando eu percebi, você já tinha se tornado alguém essencial pra mim.",
+"Capítulo 2: Nós...\n\nCada momento ao seu lado, por mais simples que fosse, se tornava especial. Suas risadas, seu jeito, sua presença… tudo em você me fazia bem. E foi aí que eu entendi que não era só gostar… era muito mais do que isso.",
+"Capítulo 3: Meu amor...\n\nO que eu sinto por você é verdadeiro. É aquele tipo de sentimento que cresce, que permanece, que não depende de nada pra existir. Eu amo você pelo que você é, e por tudo que você representa na minha vida.",
+"Capítulo 4: Minha escolha...\n\nMesmo quando a vida não é fácil, mesmo quando surgem dificuldades, eu continuo escolhendo você. Porque amar você é uma certeza que eu tenho todos os dias.",
+"FIM\n\nOu pelo menos era pra ser...\n\nMas a verdade é que não existe fim pra gente.\n\nPorque quando é de verdade, não acaba… só continua.\n\nE eu quero continuar com você.\n\nEu te amo, meu amor... caladinha ❤️"
+];
+
+let i = 0;
+
+function iniciar(){
+    document.getElementById("capa").style.display = "none";
+    document.getElementById("historia").style.display = "flex";
+    document.getElementById("musica").play();
+    gerarCoracoes();
+}
+
+function proximo(){
+    let texto = document.getElementById("texto");
+    let botao = document.getElementById("btn");
+
+    if(i < cenas.length){
+        texto.innerText = cenas[i];
+        i++;
+
+        if(i === cenas.length){
+            botao.style.display = "none";
+        }
+    }
+}
+
+function gerarCoracoes(){
+    for(let i=0;i<35;i++){
+        let heart = document.createElement("div");
+        heart.className = "coracao";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.top = Math.random()*100 + "vh";
+        document.body.appendChild(heart);
+    }
+}
+</script>
+
+</body>
+</html>
